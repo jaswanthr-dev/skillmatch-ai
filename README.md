@@ -51,30 +51,28 @@ This was built as a learning project, so the matching logic is intentionally tra
 ## Project Structure
 
 skillmatch-ai/
-|-- app.py
-|-- matcher.py
-|-- db.py
-|-- history.py
-|-- test_matcher.py
-|-- test_validation.py
-|-- test_connection.py
-|-- requirements.txt
-|-- .env.example
-|-- .gitignore
-|-- .python-version
-|-- vercel.json
-|-- README.md
+|-- app.py # Flask routes
+|-- matcher.py # Skill detection, matching, checklist logic
+|-- db.py # MySQL connection helper
+|-- history.py # Save / read / delete saved analyses
+|-- test_matcher.py # Tests for matcher.py
+|-- test_validation.py # Tests for form validation
+|-- test_connection.py # Manual DB connection check
+|-- requirements.txt # Python dependencies
+|-- .env.example # Template for environment variables
+|-- .gitignore # Files Git should ignore
+|-- .python-version # Pins Python version for Vercel
+|-- vercel.json # Vercel deployment config
+|-- README.md # Project documentation
 |
 |-- sql/
-| -- schema.sql | |-- templates/ | |-- base.html | |-- index.html | |-- history.html | |-- history_detail.html | |-- _result_partial.html | -- 404.html
+| -- schema.sql # Database + table definition | |-- templates/ # Jinja HTML templates | |-- base.html | |-- index.html | |-- history.html | |-- history_detail.html | |-- _result_partial.html | -- 404.html
 |
-|-- static/
-| |-- css/
-| | -- style.css | -- js/
-| -- script.js | -- public/
--- static/ |-- css/ | -- style.css (mirrors static/css/style.css - served by Vercel)
--- js/ -- script.js (mirrors static/js/script.js - served by Vercel)
-
+|-- static/ # CSS and JS, served locally by Flask
+| |-- css/style.css
+| -- js/script.js | -- public/static/ # Mirrors static/, served by Vercel in production
+|-- css/style.css
+`-- js/script.js
 
 | File/Folder | Purpose |
 |---|---|
