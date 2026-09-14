@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="form-section">
+    <h2>Check your skill match</h2>
+    <p class="section-hint">
+        Paste your skills and an internship description below. Matching is
+        keyword-based - it looks for known skill terms in both texts, it
+        does not evaluate you as a candidate.
+    </p>
+
+    {% if error %}
+        <p class="error-message" role="alert">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('home') }}" novalidate>
+        <label for="student_skills">Your skills</label>
+        <textarea id="student_skills" name="student_skills" rows="6"
+            placeholder="e.g. Python, SQL, Flask, communication skills">{{ student_skills or "" }}</textarea>
+
+        <label for="job_description">Internship description</label>
+        <textarea id="job_description" name="job_description" rows="10"
+            placeholder="Paste the full internship or job description here">{{ job_description or "" }}</textarea>
+
+        <button type="submit" id="submit-btn">Check my match</button>
+    </form>
+</section>
+{% endblock %}

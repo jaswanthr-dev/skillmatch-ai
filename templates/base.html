@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillMatch AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Fraunces:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        (function () {
+            const saved = localStorage.getItem("skillmatch-theme");
+            const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            document.documentElement.setAttribute("data-theme", saved || (systemDark ? "dark" : "light"));
+        })();
+    </script>
+</head>
+<body>
+    <div class="page">
+        <header class="site-header">
+            <a class="wordmark" href="{{ url_for('home') }}">Skill<span class="logo-match">Match</span> AI</a>
+
+            <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="top-nav" id="top-nav">
+                <a href="{{ url_for('home') }}" class="{{ 'active' if request.path == url_for('home') else '' }}">New match</a>
+                <a href="{{ url_for('history') }}" class="{{ 'active' if '/history' in request.path else '' }}">History</a>
+
+                <button id="theme-toggle" type="button" aria-label="Switch between light and dark mode" title="Switch theme">
+                    <span class="icon-sun">&#9728;</span>
+                    <span class="icon-moon">&#9789;</span>
+                </button>
+            </nav>
+        </header>
+
+        <p class="tagline">A keyword-based internship skill matcher</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="flash-message" role="status">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="site-footer">
+            <p>This is a keyword-matching estimate, not a professional hiring assessment.</p>
+        </footer>
+    </div>
+
+    <div class="modal-overlay" id="confirm-modal-overlay">
+        <div class="modal-box" role="alertdialog" aria-modal="true" aria-labelledby="modal-message">
+            <p id="modal-message" class="modal-message"></p>
+            <div class="modal-actions">
+                <button type="button" id="modal-cancel-btn" class="modal-btn modal-btn-cancel">Cancel</button>
+                <button type="button" id="modal-confirm-btn" class="modal-btn modal-btn-confirm">Yes, continue</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="results-section">
+    <div class="detail-header">
+        <h2>Saved analysis</h2>
+        <span class="history-date">{{ created_at.strftime("%d %b %Y, %I:%M %p") }}</span>
+    </div>
+
+    {% include "_result_partial.html" %}
+
+    <div class="detail-actions">
+        <a class="back-link" href="{{ url_for('history') }}">&larr; Back to history</a>
+        <form method="POST" action="{{ url_for('delete_history_entry', analysis_id=analysis_id) }}"
+            class="delete-form" data-confirm="Delete this saved analysis? This can't be undone.">
+            <button type="submit" class="delete-btn">Delete this analysis</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% if result.message %}
+    <p class="info-message">{{ result.message }}</p>
+{% else %}
+    <div class="meter" role="img" aria-label="Match score: {{ result.match_percentage }} percent">
+        <div class="meter-ticks">
+            {% for i in range(10) %}
+                <span class="tick {{ 'filled' if i < (result.match_percentage / 10) | round(0, 'floor') else '' }}"></span>
+            {% endfor %}
+        </div>
+        <p class="meter-label">Match score: <strong>{{ result.match_percentage }}%</strong></p>
+    </div>
+{% endif %}
+
+<div class="ledger">
+    <div class="ledger-column">
+        <h3>Matched <span class="count">{{ result.matched_skills | length }}</span></h3>
+        {% if result.matched_skills %}
+            <ul class="skill-list matched">
+                {% for skill in result.matched_skills %}
+                    <li><span class="tag">{{ skill }}</span></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="empty-state">No matched skills found.</p>
+        {% endif %}
+    </div>
+    <div class="ledger-divider" aria-hidden="true"></div>
+    <div class="ledger-column">
+        <h3>Missing <span class="count">{{ result.missing_skills | length }}</span></h3>
+        {% if result.missing_skills %}
+            <ul class="skill-list missing">
+                {% for skill in result.missing_skills %}
+                    <li><span class="tag">{{ skill }}</span></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="empty-state">Nothing missing - full match on detected skills.</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="checklist-block">
+    <h3>Preparation checklist</h3>
+    {% if result.checklist %}
+        <ul class="checklist">
+            {% for tip in result.checklist %}
+                <li>{{ tip }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="empty-state">Nothing to prepare - you're fully matched.</p>
+    {% endif %}
+</div>
+
+<details class="raw-details">
+    <summary>Detected skills (raw detection output)</summary>
+    <p><strong>From your input:</strong> {{ result.student_skills | join(", ") if result.student_skills else "none detected" }}</p>
+    <p><strong>From the internship description:</strong> {{ result.required_skills | join(", ") if result.required_skills else "none detected" }}</p>
+</details>

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="error-section">
+    <h2>Not found</h2>
+    <p>That analysis doesn't exist - it may have already been deleted.</p>
+    <a class="back-link" href="{{ url_for('home') }}">&larr; Back to SkillMatch AI</a>
+</section>
+{% endblock %}

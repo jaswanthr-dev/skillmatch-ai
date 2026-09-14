@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "app.py": {
+      "excludeFiles": "{test_*.py,sql/**,README.md}"
+    }
+  }
+}
