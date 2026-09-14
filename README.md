@@ -1,4 +1,4 @@
-# SkillMatch AI
+﻿# SkillMatch AI
 
 **A keyword-based internship skill matcher, built with Flask and MySQL.**
 
@@ -29,10 +29,6 @@ Paste your skills and an internship description, and get back a match score, mat
 
 This was built as a learning project, so the matching logic is intentionally transparent: no external AI APIs, no ML models — just readable Python you can trace line by line in `matcher.py`. That trade-off is deliberate; the goal was understanding every part of the system, not maximizing accuracy.
 
-## Screenshots
-
-*(Add a screenshot or two here once you have them — the home form and a results page work well.)*
-
 ## Tech Stack
 
 | Layer | Choice |
@@ -55,43 +51,30 @@ This was built as a learning project, so the matching logic is intentionally tra
 ## Project Structure
 
 skillmatch-ai/
-├── app.py
-├── matcher.py
-├── db.py
-├── history.py
-├── test_matcher.py
-├── test_validation.py
-├── test_connection.py
-├── requirements.txt
-├── .env.example
-├── .gitignore
-├── .python-version
-├── vercel.json
-├── README.md
-│
-├── sql/
-│ └── schema.sql
-│
-├── templates/
-│ ├── base.html
-│ ├── index.html
-│ ├── history.html
-│ ├── history_detail.html
-│ ├── _result_partial.html
-│ └── 404.html
-│
-├── static/
-│ ├── css/
-│ │ └── style.css
-│ └── js/
-│ └── script.js
-│
-└── public/
-└── static/
-├── css/
-│ └── style.css (mirrors static/css/style.css - served by Vercel)
-└── js/
-└── script.js (mirrors static/js/script.js - served by Vercel)
+|-- app.py
+|-- matcher.py
+|-- db.py
+|-- history.py
+|-- test_matcher.py
+|-- test_validation.py
+|-- test_connection.py
+|-- requirements.txt
+|-- .env.example
+|-- .gitignore
+|-- .python-version
+|-- vercel.json
+|-- README.md
+|
+|-- sql/
+| -- schema.sql | |-- templates/ | |-- base.html | |-- index.html | |-- history.html | |-- history_detail.html | |-- _result_partial.html | -- 404.html
+|
+|-- static/
+| |-- css/
+| | -- style.css | -- js/
+| -- script.js | -- public/
+-- static/ |-- css/ | -- style.css (mirrors static/css/style.css - served by Vercel)
+-- js/ -- script.js (mirrors static/js/script.js - served by Vercel)
+
 
 | File/Folder | Purpose |
 |---|---|
